@@ -5,9 +5,7 @@ import {renderCountry, renderCountries, clear} from "./renderCountry";
 import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
-
 const inputSearchBox = document.querySelector('#search-box');
-
 
 inputSearchBox.addEventListener(
     'input',
@@ -18,7 +16,9 @@ inputSearchBox.addEventListener(
         fetchCountries(names)
         .then((names) => {
             
-            if(names.length > 10) return Notify.info("Too many matches found. Please enter a more specific name.");
+            if(names.length > 10) {
+                clear();
+                return Notify.info("Too many matches found. Please enter a more specific name.")};
             if(names.length > 1) return renderCountries(names);
 
             return renderCountry(names[0]);
